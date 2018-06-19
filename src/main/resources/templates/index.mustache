@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Url Short</title>
+  <link rel="stylesheet" href="/webjars/bulma/0.7.0/css/bulma.css">
+  <link rel="stylesheet" href="/webjars/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+<section class="hero is-primary is-bold">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        <i class="fa fa-github-square" aria-hidden="true"></i>&nbsp;Url Short
+      </h1>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <form action="/" method="post">
+      <div class="field has-addons">
+        <div class="control is-expanded">
+         <input class="input" autocomplete="off" name="uri" type="text" placeholder="original URL" required>
+        </div>
+        <div class="is-grouped">
+          <div class="has-text-right">
+            <button class="button is-primary">SHORTEN</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+<section class="section section-padding-large">
+  <div class="container">
+    {{#uriShort}}
+      <div class="field has-addons">
+        <div class="control is-expanded">
+          <input id="short-url" readonly class="input is-large" type="text" value="{{host}}/{{code}}" />
+        </div>
+        <div class="control">
+          <a class="button is-info is-large" onclick="copy()">
+            Copy URL
+          </a>
+        </div>
+      </div>
+    {{/uriShort}}
+  </div>
+</section>
+<script>
+  function copy() {
+    var copy = document.getElementById("short-url");
+    copy.select();
+    document.execCommand("copy");
+  }
+</script>
+</body>
+</html>

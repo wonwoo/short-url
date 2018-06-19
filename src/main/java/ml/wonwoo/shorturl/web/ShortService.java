@@ -21,18 +21,18 @@ public class ShortService {
     this.shortRepository = shortRepository;
   }
 
-  public Short shortUri(URI uri) {
+  Short shortUri(URI uri) {
     String scheme = uri.getScheme();
     Short shortUri = new Short(scheme == null ?
         URI.create("http://" + uri) : uri, encode(Math.abs(this.random.nextInt())));
     return shortRepository.save(shortUri);
   }
 
-  public Optional<Short> shortUri(String code) {
+  Optional<Short> shortUri(String code) {
     return shortRepository.findByCode(code);
   }
 
-  public String encode(int num) {
+  private String encode(int num) {
     StringBuilder str = new StringBuilder();
     while (num > 0) {
       str.insert(0, ALPHABET.charAt(num % BASE));
